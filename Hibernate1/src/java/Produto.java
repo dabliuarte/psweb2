@@ -16,24 +16,52 @@ import javax.persistence.Id;
 @Entity
 public class Produto {
     @Id
-    private String nome;
-    private String descricao;
+    private int ID;
+    private String tipoproduto;
+    private String formato;
+    private String papel;
+    private String acabamento;
+    private String impressao;
     private float preco;
-
-    public String getNome() {
-        return nome;
+    
+    public String getTipoproduto() {
+        return tipoproduto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTipoproduto(String tipoproduto) {
+        this.tipoproduto = tipoproduto;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getFormato() {
+        return formato;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setFormato(String formato) {
+        this.formato = formato;
+    }
+
+    public String getPapel() {
+        return papel;
+    }
+
+    public void setPapel(String papel) {
+        this.papel = papel;
+    }
+
+    public String getAcabamento() {
+        return acabamento;
+    }
+
+    public void setAcabamento(String acabamento) {
+        this.acabamento = acabamento;
+    }
+
+    public String getImpressao() {
+        return impressao;
+    }
+
+    public void setImpressao(String impressao) {
+        this.impressao = impressao;
     }
 
     public float getPreco() {
@@ -43,6 +71,16 @@ public class Produto {
     public void setPreco(float preco) {
         this.preco = preco;
     }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    
     
     
     

@@ -31,33 +31,26 @@ public class TesteSelect extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            
+
+            String id = request.getParameter("id");
+
+            int idInt = Integer.parseInt(id);
+
             Session sessao = HibernateUtil
                     .getSessionFactory()
                     .openSession();
-            
+
             Produto p;
-            p = (Produto) sessao.get(Produto.class, "Batata");
-            
-            out.println("Produto:" + p.getNome() + " | " 
-                          + p.getDescricao() + " | "
-                          + p.getPreco());
-            
+            p = (Produto) sessao.get(Produto.class, idInt);
+            out.println("Produto: " + p.getTipoproduto() + " | "
+                    + p.getFormato() + " | "
+                    + p.getPapel() + " | "
+                    + p.getAcabamento() + " | "
+                    + p.getImpressao() + " | "
+                    + p.getPreco());
+
             sessao.close();
             
-            
-            
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TesteSelect</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TesteSelect at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 

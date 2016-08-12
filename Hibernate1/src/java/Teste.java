@@ -32,7 +32,17 @@ public class Teste extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+            String id = request.getParameter("id");
+            String tipoproduto = request.getParameter("tipoproduto");
+            String formato = request.getParameter("formato");
+            String papel = request.getParameter("papel");
+            String acabamento = request.getParameter("acabamento");
+            String impressao = request.getParameter("impressao");
+            String preco = request.getParameter("preco");
+            
+            int idINT = Integer.parseInt(id);
+            float precoFloat = Float.parseFloat(preco);
+            
             Session sessao = HibernateUtil
                     .getSessionFactory()
                     .openSession();
@@ -40,23 +50,19 @@ public class Teste extends HttpServlet {
             Transaction tx = sessao.beginTransaction();
             
             Produto prod = new Produto();
-            prod.setNome("Batata");
-            prod.setDescricao("Vegetal de origem europeia, muito apreciado entre os nobres.");
-            prod.setPreco(1);
+            prod.setID(idINT);
+            prod.setTipoproduto(tipoproduto);
+            prod.setFormato(formato);
+            prod.setPapel(papel);
+            prod.setAcabamento(acabamento);
+            prod.setImpressao(impressao);
+            prod.setPreco(precoFloat);
             
             sessao.save(prod);
             sessao.flush();
             tx.commit();
             sessao.close();
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -64,7 +70,8 @@ public class Teste extends HttpServlet {
             out.println("<title>Servlet Teste</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Teste at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Cadastrado Com sucesso!</h1>");
+            out.println("<a href=\"pesquisar_produto.html\">Pesquisar Produto</a>");
             out.println("</body>");
             out.println("</html>");
         }
