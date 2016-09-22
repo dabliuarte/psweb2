@@ -12,6 +12,10 @@
         <servlet-name>Ingredientes</servlet-name>
         <servlet-class>Ingredientes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Massa</servlet-name>
+        <servlet-class>Massa</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -24,9 +28,46 @@
         <servlet-name>Ingredientes</servlet-name>
         <url-pattern>/Ingredientes</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Massa</servlet-name>
+        <url-pattern>/Massa</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <security-constraint>
+        <display-name>Restrição1</display-name>
+        <web-resource-collection>
+            <web-resource-name>Molho</web-resource-name>
+            <description/>
+            <url-pattern>/Molho</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>PREMIUM</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Restrição2</display-name>
+        <web-resource-collection>
+            <web-resource-name>Ingredientes</web-resource-name>
+            <description/>
+            <url-pattern>/Ingredientes</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>PREMIUM</role-name>
+            <role-name>PADRAO</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-role>
+        <description>Usuarios que pagam pelo servico</description>
+        <role-name>PREMIUM</role-name>
+    </security-role>
+    <security-role>
+        <description>usuario gratuito</description>
+        <role-name>PADRAO</role-name>
+    </security-role>
 </web-app>
